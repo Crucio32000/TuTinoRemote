@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.helloworld.nicita.nightfox_hw.qboTelepathy">
+
+    <WebView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/camView" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/noseLayout"
+        android:layout_alignTop="@+id/camView"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nose_off"
+            android:id="@+id/noseOFF"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_below="@+id/noseRED"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/noseBtns"
+            android:visibility="invisible">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RED"
+                android:id="@+id/noseRED"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:background="#ff0000"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GREEN"
+                android:id="@+id/noseGREEN"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:textColor="#ffffff"
+                android:background="#33ff00"
+                android:layout_below="@+id/noseYELLOW"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YELLOW"
+                android:id="@+id/noseYELLOW"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:background="#ffff00"
+                android:layout_below="@+id/noseRED"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/labelNose"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekDebug"
+                android:layout_below="@+id/noseLayout"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/dpad_normal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/dpadLayout">
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelAngle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/t2s_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/joystickPad"
+        android:layout_alignTop="@+id/camView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/httpDebug"
+        android:layout_below="@+id/dpadLayout"
+        android:layout_alignLeft="@+id/dpadLayout"
+        android:layout_alignStart="@+id/dpadLayout" />
+
+    <SeekBar
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/LinearBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/joystickPad"
+        android:layout_alignEnd="@+id/joystickPad"
+        android:layout_below="@+id/noseLayout"
+        android:visibility="invisible"
+        android:max="100"
+        android:indeterminate="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drive Mode"
+        android:id="@+id/drive_switch"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/labelAngle"
+        android:layout_toStartOf="@+id/labelAngle"
+        android:checked="true"
+        android:visibility="invisible" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/drive_mode"
+        android:layout_alignTop="@+id/labelAngle"
+        android:layout_toLeftOf="@+id/drive_switch"
+        android:layout_toStartOf="@+id/drive_switch"
+        android:visibility="invisible" />
+
+</RelativeLayout>

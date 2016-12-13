@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TuTino Remote</string>
+    <string name="nose_off">NOSE OFF</string>
+    <string name="nose_on">NOSE ON</string>
+</resources>
