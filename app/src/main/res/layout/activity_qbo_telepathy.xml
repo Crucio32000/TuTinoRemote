@@ -159,24 +159,16 @@
         android:max="100"
         android:indeterminate="false" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drive Mode"
-        android:id="@+id/drive_switch"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/labelAngle"
-        android:layout_toStartOf="@+id/labelAngle"
-        android:checked="true"
-        android:visibility="invisible" />
-
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/drive_mode"
-        android:layout_alignTop="@+id/labelAngle"
-        android:layout_toLeftOf="@+id/drive_switch"
-        android:layout_toStartOf="@+id/drive_switch"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:paddingRight="10dp"
+        android:scrollbarSize="30dp"
+        android:layout_alignTop="@+id/t2s_text"
+        android:minHeight="300dp"
+        android:minWidth="100dp"
+        android:layout_alignLeft="@+id/httpDebug" />
 
 </RelativeLayout>
