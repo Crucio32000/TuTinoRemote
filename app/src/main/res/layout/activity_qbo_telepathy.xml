@@ -159,16 +159,19 @@
         android:max="100"
         android:indeterminate="false" />
 
-    <NumberPicker
+    <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:max="2"
+        android:progress="0"
         android:id="@+id/drive_mode"
-        android:visibility="invisible"
-        android:paddingRight="10dp"
-        android:scrollbarSize="30dp"
-        android:layout_alignTop="@+id/t2s_text"
-        android:minHeight="300dp"
-        android:minWidth="100dp"
-        android:layout_alignLeft="@+id/httpDebug" />
+        android:layout_alignEnd="@+id/dpadLayout"
+        android:layout_alignRight="@+id/dpadLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_toEndOf="@+id/httpDebug"
+        android:layout_toRightOf="@+id/httpDebug"
+        android:layout_alignTop="@+id/t2s_text" />
 
 </RelativeLayout>
