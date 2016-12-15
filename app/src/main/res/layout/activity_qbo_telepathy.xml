@@ -108,15 +108,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/labelAngle"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center_horizontal" />
-
     <EditText
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -159,24 +150,26 @@
         android:max="100"
         android:indeterminate="false" />
 
-    <Switch
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Drive Mode"
-        android:id="@+id/drive_switch"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/labelAngle"
-        android:layout_toStartOf="@+id/labelAngle"
-        android:checked="true"
-        android:visibility="invisible" />
-
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:max="2"
+        android:progress="0"
         android:id="@+id/drive_mode"
-        android:layout_alignTop="@+id/labelAngle"
-        android:layout_toLeftOf="@+id/drive_switch"
-        android:layout_toStartOf="@+id/drive_switch"
-        android:visibility="invisible" />
+        android:layout_alignEnd="@+id/dpadLayout"
+        android:layout_alignRight="@+id/dpadLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignTop="@+id/t2s_text" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/drive_mode_text"
+        android:layout_alignBaseline="@+id/t2s_text"
+        android:layout_alignBottom="@+id/httpDebug"
+        android:layout_toLeftOf="@+id/drive_mode"
+        android:layout_toStartOf="@+id/drive_mode" />
 
 </RelativeLayout>
