@@ -68,7 +68,7 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
         String user = bundle.getString("username");
         String password = bundle.getString("password");
         String hostIP = bundle.getString("host_IP");
-        String videoIP = "http://"+hostIP+":"+bundle.getString("video_port")+"/cam.html";
+        String videoIP = "http://"+hostIP+":"+bundle.getString("video_port")+"/stream?topic=/stereo/image_raw?quality=30";
         this.loginUrl = "http://" + hostIP + ":" + bundle.getString("remote_port") + "/inbound";  //where cmdStore.php is saved
         this.reqUrl = this.loginUrl + "/cmdStore.php";
         this.loginUrl = this.loginUrl + "/checkStatus.php";
@@ -77,16 +77,15 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
         final WebView camView = (WebView) findViewById(R.id.camView);
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         final Context thisContext = (Context) this; //Its going to be used a lot. UI widgets usually requires Context object
-        final ImageView camImgView = (ImageView) findViewById(R.id.camImgView);
 
         camView.setWebViewClient(new webViewHandler((Context) this, 5000)); //Context and Timeout for the progressBar
-        camView.setInitialScale(1);
-        camView.getSettings().setJavaScriptEnabled(true);
+        /*camView.setInitialScale(1);
+        camView.getSettings().setJavaScriptEnabled(false);
         camView.getSettings().setLoadWithOverviewMode(true);
         camView.getSettings().setUseWideViewPort(true);
         camView.getSettings().setMixedContentMode(camView.getSettings().MIXED_CONTENT_ALWAYS_ALLOW);
         camView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        camView.setScrollbarFadingEnabled(false);
+        camView.setScrollbarFadingEnabled(false); */
         camView.loadUrl(videoIP);
 
         //Handle Refresh event to reload WebView URL --> webViewHandler
@@ -160,7 +159,8 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String c_char = s.toString();
-                CharSequence elem = ".";
+                //CharSequence elem = ".";
+                CharSequence elem = "\n";
                 if (c_char.contains(elem))
                 {
                     toPost.put("text", c_char);
@@ -216,14 +216,28 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
 
 
         // Handle NumberPicker for Drive Mode
-        final NumberPicker drive_mode = (NumberPicker) findViewById(R.id.drive_mode);
-        drive_mode.setMaxValue(2);
-        drive_mode.setMinValue(0);
-        drive_mode.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        final SeekBar drive_mode = (SeekBar) findViewById(R.id.drive_mode);
+        //drive_mode
+        //drive_mode.setMaxValue(2);
+        //drive_mode.setMinValue(0);
+        drive_mode.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                toPost.put("drive_mode", ""+newVal);
+            public void onProgressChanged(SeekBar seekBar, int progressValue,boolean fromUser) {
+                toPost.put("drive_mode", "" + progressValue);
                 new httpReqHandler(toPost, reqUrl).execute();
+                // Update Text View
+                TextView drive_text = (TextView) findViewById(R.id.drive_mode_text);
+                drive_text.setText("" + progressValue);
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                    //Toast.makeText(getApplicationContext(), "Started tracking seekbar", Toast.LENGTH_SHORT).show();
+                }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -265,6 +279,15 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
 
     //
     // CLICK AND TOUCH EVENTS
@@ -278,11 +301,10 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
         Button noseOFF = (Button) findViewById(R.id.noseOFF);
         LinearLayout noseBtns = (LinearLayout) findViewById(R.id.noseBtns);
         SeekBar linBar = (SeekBar) findViewById(R.id.LinearBar);
-        Switch drive_switch = (Switch) findViewById(R.id.drive_switch);
         LinearLayout dpad = (LinearLayout) findViewById(R.id.dpadLayout);
         LinearLayout apad = (LinearLayout) findViewById(R.id.joystickPad);
         EditText t2s = (EditText) findViewById(R.id.t2s_text);
-        NumberPicker drive_mode = (NumberPicker) findViewById(R.id.drive_mode);
+        SeekBar drive_mode = (SeekBar) findViewById(R.id.drive_mode);
         int visibility = noseBtns.getVisibility();
         switch (v.getId()) { //Depending on the clicked button
             case R.id.noseRED:
@@ -312,7 +334,6 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
                 // Set visibility
                 noseBtns.setVisibility(visibility);
                 linBar.setVisibility(visibility);
-                drive_switch.setVisibility(visibility);
                 t2s.setVisibility(visibility);
                 drive_mode.setVisibility(visibility);
                 break;
@@ -392,7 +413,7 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
             float vWidth = v.getWidth();
             float vHeight = v.getHeight();
             //View Elements
-            TextView labelDebug = (TextView) findViewById(R.id.labelAngle); //DEBUG
+            //TextView labelDebug = (TextView) findViewById(R.id.labelAngle); //DEBUG
 
 
             if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE)

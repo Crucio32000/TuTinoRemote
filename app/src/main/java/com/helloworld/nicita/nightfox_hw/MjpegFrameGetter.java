@@ -18,7 +18,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-import static com.helloworld.nicita.nightfox_hw.R.id.camImgView;
+
 
 /**
  * Created by Nicita on 12/12/2016.

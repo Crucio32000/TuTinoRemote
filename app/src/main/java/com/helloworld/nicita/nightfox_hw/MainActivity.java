@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText videoEdit = (EditText) findViewById(R.id.videoPortEdit);
         videoEdit.setText("2020");  //IP_VIDEOEdit.setText("192.9.200.103:2020/cam.mjpg");  // 192.9.200.90
         EditText hostIP = (EditText) findViewById(R.id.IP_HOST);
-        hostIP.setText("10.102.156.36");
+        hostIP.setText("192.168.0.250");
         // ipEdit.addTextChangedListener(new IPValidator((TextView) findViewById(R.id.validateDebug), ipEdit)); // Works only when numbers between dots are 3 (192.9 is not allowed, 192.009 yes)
 
         // Notifications Builder

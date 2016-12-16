@@ -55,7 +55,7 @@ public class webViewHandler extends WebViewClient {
         this.progressBar = ProgressDialog.show(this.progressBar.getContext(), url, "Loading...");
         this.timeout.start();
         //
-        //view.setInitialScale(this.getScale());
+        view.setInitialScale(250);
     }
 
     public void onLoadResource(WebView view, String url) {
@@ -90,9 +90,9 @@ public class webViewHandler extends WebViewClient {
     private int getScale() {
         int width = Resources.getSystem().getDisplayMetrics().widthPixels;
         int height = Resources.getSystem().getDisplayMetrics().heightPixels;
-        int valW = this.s_width/width;
+        int valW = this.s_width/height;
         valW = valW * 100;
-        int valH = this.s_height/height;
+        int valH = this.s_height/width;
         valH = valH * 100;
         int val = Math.min(valW,valH);
         return val;
