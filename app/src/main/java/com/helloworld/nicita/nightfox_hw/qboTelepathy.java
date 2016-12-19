@@ -223,12 +223,6 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
         drive_mode.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue,boolean fromUser) {
-                toPost.put("drive_mode", "" + progressValue);
-                new httpReqHandler(toPost, reqUrl).execute();
-                // Update Text View
-                TextView drive_text = (TextView) findViewById(R.id.drive_mode_text);
-                drive_text.setText("" + progressValue);
-
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -237,7 +231,11 @@ public class qboTelepathy extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                //Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
+                toPost.put("drive_mode", "" + seekBar.getProgress());
+                new httpReqHandler(toPost, reqUrl).execute();
+                // Update Text View
+                TextView drive_text = (TextView) findViewById(R.id.drive_mode_text);
+                drive_text.setText("" + seekBar.getProgress());
             }
         });
 
